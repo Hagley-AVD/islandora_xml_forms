@@ -112,9 +112,9 @@
 						<xsl:when test="mods:etal">
 							<xsl:value-of select="."/>
 						</xsl:when>
-						<xsl:otherwise>
+					<!--	<xsl:otherwise>
 							<xsl:text>et al</xsl:text>
-						</xsl:otherwise>
+						</xsl:otherwise>-->
 					</xsl:choose>
 				</dc:creator>
 			</xsl:when>
@@ -207,7 +207,7 @@
 		</xsl:for-each>
 	</xsl:template>
 
-	<xsl:template match="mods:dateIssued | mods:dateCreated | mods:dateCaptured">
+	<xsl:template match="mods:dateIssued | mods:dateCreated">
 		<dc:date>
 			<xsl:choose>
 				<xsl:when test="@point='start'">
@@ -224,7 +224,7 @@
 		</dc:date>
 	</xsl:template>
 
-	<xsl:template match="mods:dateIssued[@point='start'] | mods:dateCreated[@point='start'] | mods:dateCaptured[@point='start'] | mods:dateOther[@point='start'] ">
+	<xsl:template match="mods:dateIssued[@point='start'] | mods:dateCreated[@point='start'] | mods:dateOther[@point='start'] ">
 		<xsl:variable name="dateName" select="local-name()"/>
 		<dc:date>
 			<xsl:value-of select="."/>-<xsl:value-of select="../*[local-name()=$dateName][@point='end']"/>
